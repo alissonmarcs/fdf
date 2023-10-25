@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:01:10 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/17 09:23:29 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:53:15 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 int					ft_lstsize(t_list *lst);
-
+int					ft_abs(int n);
 // *** GNL ***
 
 # ifndef BUFFER_SIZE

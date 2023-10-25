@@ -6,7 +6,7 @@
 #    By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 10:35:42 by almarcos          #+#    #+#              #
-#    Updated: 2023/10/17 14:55:12 by almarcos         ###   ########.fr        #
+#    Updated: 2023/10/24 11:53:47 by almarcos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SOURCES = ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c \
 	ft_substr.c ft_putchar_fd.c ft_putstr_fd.c ft_strjoin.c\
 	ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-	ft_striteri.c ft_putendl_fd.c ft_putnbr_fd.c
+	ft_striteri.c ft_putendl_fd.c ft_putnbr_fd.c ft_abs.c
 
 BONUS_SOURCES = ft_lstnew_bonus.c ft_lstadd_front_bonus.c \
 	ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
