@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:01:10 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/24 11:53:15 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:20:10 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int					ft_abs(int n);
 // *** GNL ***
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 6000
 # endif
 
 char				*get_next_line(int fd);
