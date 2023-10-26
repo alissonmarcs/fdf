@@ -23,19 +23,16 @@ SOURCES = ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c \
 	ft_substr.c ft_putchar_fd.c ft_putstr_fd.c ft_strjoin.c\
 	ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-	ft_striteri.c ft_putendl_fd.c ft_putnbr_fd.c ft_abs.c
-
-BONUS_SOURCES = ft_lstnew_bonus.c ft_lstadd_front_bonus.c \
-	ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
-	ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-	ft_lstmap_bonus.c
+	ft_striteri.c ft_putendl_fd.c ft_putnbr_fd.c ft_abs.c \
+	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
+	ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+	ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 GNL_SOURCE = get_next_line_bonus.c
 
 FT_PRINTF_SOURCE = ft_printf.c
 
 OBJECTS = $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
-BONUS_OBJECTS = $(addprefix $(OBJECTS_FOLDER), $(BONUS_SOURCES:.c=.o))
 GNL_OBJECT = $(addprefix $(OBJECTS_FOLDER), $(GNL_SOURCE:.c=.o))
 FT_PRINTF_OBJECT = $(addprefix $(OBJECTS_FOLDER), $(FT_PRINTF_SOURCE:.c=.o))
 
@@ -47,8 +44,6 @@ $(OBJECTS_FOLDER):
 	mkdir -p $(OBJECTS_FOLDER)
 
 $(NAME): $(OBJECTS) $(GNL_OBJECT) $(FT_PRINTF_OBJECT)
-
-bonus: $(BONUS_OBJECTS)
 
 $(OBJECTS_FOLDER)%.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDES)
