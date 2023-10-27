@@ -1,6 +1,4 @@
 #include "fdf.h"
-#include <time.h> 
-#include <stdio.h>
 
 void error()
 {
@@ -32,7 +30,7 @@ int main()
 	t_data data;
 	t_pixel start;
 	t_pixel end;
-	int i;
+	uint32_t tmp;
 
 	//mlx_set_setting(MLX_HEADLESS, 1);
 	data.mlx = mlx_init(WIDTH, HEIGHT, "lines", true);
@@ -41,29 +39,47 @@ int main()
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	if (!data.img)
 		error();
-	ft_memset(data.img->pixels, 255, data.img->width * data.img->height * sizeof (int32_t));
-
+	ft_bzero(data.img->pixels, data.img->width * data.img->height);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	
-
-	mlx_loop_hook(data.mlx, hook, &data);
-
-	srand(time(0)); 
-	i = 0;
-	while (i < 500)
+	start.x = WIDTH / 2;
+	start.y = HEIGHT / 2;
+	start.color = 0x0000FFFFU;
+	end.x = WIDTH - 1;
+	
+	end.y = 0;
+	while (end.y <= (HEIGHT - 1))
 	{
-		start.x = randon_num(1, WIDTH - 1);
-		start.y = randon_num(1, HEIGHT - 1);
-		start.color = put_alpha(rand(), 255);
-		end.x = randon_num(1, WIDTH - 1);
-		end.y = randon_num(1, HEIGHT - 1);
 		draw_line(&data, start, end);
-		i++;
+		end.y++;
 	}
 
+	end.x = 0;
+	end.y = 0;
+	while(end.y <= (HEIGHT - 1))
+	{
+		draw_line(&data, start, end);
+		end.y++;
+	}
 
+	end.x = 0;
+	end.y = 0;
+	start.color = 0xFF0000FF;
+	while (end.x != WIDTH - 1)
+	{
+		draw_line(&data, start, end);
+		end.x++;
+	}
+
+	end.x = 0;
+	end.y = HEIGHT - 1;
+	while (end.x != WIDTH - 1)
+	{
+		draw_line(&data, start, end);
+		end.x++;
+	}
+
+	mlx_loop_hook(data.mlx, hook, &data);
 	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);	
-
-	return (0);
+	mlx_terminate(data.mlx);
 }
