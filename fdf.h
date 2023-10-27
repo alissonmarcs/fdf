@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/25 11:58:01 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:22:33 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 #include <MLX42/MLX42.h>
 #include <libft.h>
 #include <stdbool.h>
+#include <stdint.h>
 
-#define WIDTH 1000
-#define HEIGHT 800
+#define WIDTH 1900
+#define HEIGHT 1070
 
 typedef struct s_data
 {
@@ -29,9 +30,9 @@ typedef struct s_data
 
 typedef struct s_pixel
 {
-	int			x;
-	int			y;
-	int			color;
+	uint32_t			x;
+	uint32_t			y;
+	uint32_t			color;
 }				t_pixel;
 
 typedef struct s_line_drawing_data
@@ -42,6 +43,14 @@ typedef struct s_line_drawing_data
 	int incX;
 	int incY;
 } t_line_drawing_data;
+
+typedef struct s_point
+{
+	int x;
+	int y;
+	int z;
+	int color;
+} t_point;
 
 void draw_line(t_data *data, t_pixel start, t_pixel end);
 

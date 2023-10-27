@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+         #
+#    By: alisson <alisson@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:54:44 by almarcos          #+#    #+#              #
-#    Updated: 2023/10/25 11:59:54 by almarcos         ###   ########.fr        #
+#    Updated: 2023/10/26 11:07:30 by alisson          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,5 +34,5 @@ clean:
 	rm -rf libs/MLX42/build
 
 run: libs
-	@cc main.c $(SOURCES) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(HEADERS) -g -O0
+	@cc main4.c $(SOURCES) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(HEADERS) -g -O0
 	./a.out

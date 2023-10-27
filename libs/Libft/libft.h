@@ -6,7 +6,7 @@
 /*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:01:10 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/26 11:20:10 by alisson          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:55:00 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 int					ft_lstsize(t_list *lst);
 int					ft_abs(int n);
+int					ft_hex_to_int(char *str);
 // *** GNL ***
 
 # ifndef BUFFER_SIZE
