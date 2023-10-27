@@ -21,21 +21,22 @@ int randon_num(int min, int max)
 	return (rand() % (max - min + 1)) + min;
 }
 
-uint32_t put_alpha(uint32_t color, uint8_t alpha)
+uint32_t put_alpha(uint32_t color, uint32_t alpha)
 {
-	return (color << 8 | alpha);
+	
+	return (((color & 0x00FFFFFF | alpha << 24) | (color & 0xFF0000)));
 }
 
-void black_background(void *block, int size)
+void set_background(void *block, int size)
 {
-	unsigned int *ptr;
+	uint32_t *ptr;
 	int i;
 
-	ptr = block;
 	i = 0;
+	ptr = block;
 	while (i < size)
 	{
-		ptr[i] = put_alpha(0, 255);
+		ptr[i] = put_alpha(0x000000, 255);
 		i++;
 	}
 }
@@ -53,21 +54,15 @@ int main()
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	if (!data.img)
 		error();
-	//ft_bzero(data.img->pixels, data.img->width * data.img->height * 4);
-	//black_background(data.img->pixels, data.img->width * data.img->height);
+	set_background(data.img->pixels, data.img->width * data.img->height);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	
-	mlx_put_pixel(data.img, 0, 0, put_alpha(rand(), 8));
 	
 	unsigned char *ptr;
 	ptr = data.img->pixels;
-
-	ft_printf("%d\n", *(ptr + 3));
-
-	// for (int i = 0; i < 5; i++)
-	// {
-	// 	ft_printf("%d\n", ptr[i]);
-	// }
+	for (int i = 0; i < 10; i++)
+	{
+		ft_printf("%d\n", ptr[i]);
+	}
 
 	mlx_loop_hook(data.mlx, hook, &data);
 	mlx_loop(data.mlx);

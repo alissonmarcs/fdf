@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/26 11:22:33 by alisson          ###   ########.fr       */
+/*   Updated: 2023/10/27 15:05:50 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 #include <libft.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <fcntl.h>
 
-#define WIDTH 1900
-#define HEIGHT 1070
+#define WIDTH 1000
+#define HEIGHT 700
 
 typedef struct s_data
 {
@@ -49,9 +50,18 @@ typedef struct s_point
 	int x;
 	int y;
 	int z;
-	int color;
+	uint32_t color;
 } t_point;
 
+typedef struct s_map
+{
+	t_list *list;
+	t_point *points;
+	uint32_t size;
+} t_map;
+
+
 void draw_line(t_data *data, t_pixel start, t_pixel end);
+void parse_map(t_map *map, char *map_file);
 
 #endif
