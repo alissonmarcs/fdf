@@ -6,16 +6,16 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:00 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/25 16:30:39 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:23:42 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
-void draw_line(t_data *data, t_pixel start, t_pixel end)
+void draw_line(t_fdf *data, t_point start, t_point end)
 {
 	t_line_drawing_data line_data;
-	t_pixel walker;
+	t_point walker;
 
 	line_data.dx = ft_abs(end.x - start.x);
 	line_data.dy = ft_abs(end.y - start.y);

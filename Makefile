@@ -6,19 +6,24 @@
 #    By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:54:44 by almarcos          #+#    #+#              #
-#    Updated: 2023/10/27 14:33:03 by almarcos         ###   ########.fr        #
+#    Updated: 2023/11/03 10:33:41 by almarcos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = fdf
 LIBFT = libs/Libft/libft.a
 MLX42 = libs/MLX42/build/libmlx42.a
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 CFLAGS = -Wall -Werror -Wextra -g -O0
 HEADERS = -I libs/Libft/ -I libs/MLX42/include/
 
-SOURCES = draw_line/draw_line.c parse_map/parse_map.c
+SOURCES = main.c error_handler.c parse_map.c parse_map_utils.c inits.c draw_line.c \
+	utils.c
 
-all: run
+all: $(NAME)
+
+$(NAME):
+	cc $(SOURCES) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(HEADERS) -g3 -O0
 
 libs: $(LIBFT) $(MLX42)
 
@@ -34,5 +39,5 @@ clean:
 	rm -rf libs/MLX42/build
 
 run: libs
-	@cc main5.c $(SOURCES) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(HEADERS) -g -O0
+	@cc $(SOURCES) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(HEADERS) -g3 -O0
 	./a.out

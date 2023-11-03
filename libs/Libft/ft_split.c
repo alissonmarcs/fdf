@@ -6,15 +6,15 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 14:22:35 by almarcos          #+#    #+#             */
-/*   Updated: 2023/08/06 13:55:15 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:01:47 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_word_count(const char *s, int c)
+static short	ft_word_count(const char *s, int c)
 {
-	size_t	words;
+	short	words;
 
 	words = 0;
 	while (*s)
@@ -34,8 +34,8 @@ static size_t	ft_word_count(const char *s, int c)
 
 static char	**ft_alloc_words(char **array, const char *s, int c)
 {
-	size_t	current_word_len;
-	size_t	index;
+	short	current_word_len;
+	short	index;
 
 	index = 0;
 	while (*s)
@@ -58,7 +58,7 @@ static char	**ft_alloc_words(char **array, const char *s, int c)
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
-	size_t	words;
+	short	words;
 
 	if (!s)
 		return (NULL);

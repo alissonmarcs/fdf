@@ -11,3 +11,16 @@ The first diagram shows a computer using little-endian. This starts the storing 
 o byte menos significante está nos endereços maiores.
 
 https://www.sciencedirect.com/topics/computer-science/most-significant-byte
+
+quando um ponteiro char aponta para um int, ele está apontando pro byte menos significante desse int.
+
+char *ptr;
+int color;
+
+ptr = (char *) &color;
+
+é exatamente esse byte que representa o alpha.
+
+Os imacs da escola são Big endian, ou seja, o byte mais significativo está alocado nos endereços menores. Por isso, quando você printa os bytes do buffer de memória de imagem da MLX42, o primeiro byte representa a cor vermelha, o segundo a cor verde, e assim vai.
+
+Mainzinha para te mostrar que um ponteiro char apontando para um int, está apontando pro byte menos significativo desse int.

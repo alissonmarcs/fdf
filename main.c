@@ -1,69 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/02 10:42:12 by almarcos          #+#    #+#             */
+/*   Updated: 2023/11/03 16:07:44 by almarcos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-#include <time.h> 
-#include <stdio.h>
 
-void error()
+void	transformations(t_fdf *fdf, t_point start, t_point end);
+void	scale(t_point *start, t_point *end);
+
+void	render(t_fdf *fdf)
 {
-	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 1);
-	exit(EXIT_FAILURE);
-}
+	int	x;
+	int	y;
 
-void hook(void *param)
-{
-	t_data *data;
-	data = param;
-
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(data->mlx);
-}
-
-int randon_num(int min, int max)
-{
-	return (rand() % (max - min + 1)) + min;
-}
-
-uint32_t put_alpha(uint32_t color, uint8_t alpha)
-{
-	return (color << 8 | alpha);
-}
-
-int main()
-{
-	t_data data;
-	t_pixel start;
-	t_pixel end;
-	int i;
-
-	//mlx_set_setting(MLX_HEADLESS, 1);
-	data.mlx = mlx_init(WIDTH, HEIGHT, "lines", true);
-	if (!data.mlx)
-		error();
-	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	if (!data.img)
-		error();
-	ft_memset(data.img->pixels, 255, data.img->width * data.img->height * sizeof (int32_t));
-
-	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	
-
-	mlx_loop_hook(data.mlx, hook, &data);
-
-	srand(time(0)); 
-	i = 0;
-	while (i < 500)
+	y = 0;
+	while (y + 1 <= fdf->map->height)
 	{
-		start.x = randon_num(1, WIDTH - 1);
-		start.y = randon_num(1, HEIGHT - 1);
-		start.color = put_alpha(rand(), 255);
-		end.x = randon_num(1, WIDTH - 1);
-		end.y = randon_num(1, HEIGHT - 1);
-		draw_line(&data, start, end);
-		i++;
+		x = 0;
+		while (x + 1 <= fdf->map->width)
+		{
+			if (x + 1 < fdf->map->width)
+				transformations(fdf, fdf->map->matrix[y][x], fdf->map->matrix[y][x + 1]);
+			if (y + 1 < fdf->map->height)
+				transformations(fdf, fdf->map->matrix[y][x], fdf->map->matrix[y+ 1][x]);
+			x++;
+		}
+		y++;
 	}
+}
 
+void	transformations(t_fdf *fdf, t_point start, t_point end)
+{
+	scale(&start, &end);
+	draw_line(fdf, start, end);
+}
 
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);	
+void	scale(t_point *start, t_point *end)
+{
+	int	scale;
 
-	return (0);
+	scale = get_scale_factor();
+	start->x *= scale;
+	start->y *= scale;
+	end->x *= scale;
+	end->y *= scale;
+}
+
+int	main(int argc, char **argv)
+{
+	t_fdf	*fdf;
+
+	// mlx_set_setting(MLX_HEADLESS, 1);
+	fdf = init_fdf(argv[1]);
+	render(fdf);
+	mlx_loop(fdf->mlx);
+	mlx_close_window(fdf->mlx);
+	mlx_terminate(fdf->mlx);
+	free_matrix(fdf->map);
+	free(fdf->map);
+	free(fdf);
 }
