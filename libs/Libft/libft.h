@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:01:10 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/26 16:55:00 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/04 10:13:24 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int					ft_hex_to_int(char *str);
 // *** GNL ***
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 6000
+#  define BUFFER_SIZE 600
 # endif
 
 char				*get_next_line(int fd);

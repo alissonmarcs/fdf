@@ -6,14 +6,15 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:42:12 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/03 16:07:44 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:45:03 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 void	transformations(t_fdf *fdf, t_point start, t_point end);
-void	scale(t_point *start, t_point *end);
+void	scale(t_fdf *fdf, t_point *start, t_point *end);
+void isometric(t_fdf *fdf, t_point *start, t_point *end);
 
 void	render(t_fdf *fdf)
 {
@@ -38,26 +39,42 @@ void	render(t_fdf *fdf)
 
 void	transformations(t_fdf *fdf, t_point start, t_point end)
 {
-	scale(&start, &end);
+	scale(fdf, &start, &end);
+	isometric(fdf, &start, &end);
 	draw_line(fdf, start, end);
 }
 
-void	scale(t_point *start, t_point *end)
+void	scale(t_fdf *fdf, t_point *start, t_point *end)
 {
-	int	scale;
+	start->x *= fdf->cam.scale;
+	start->y *= fdf->cam.scale;
+	end->x *= fdf->cam.scale;
+	end->y *= fdf->cam.scale;
+}
 
-	scale = get_scale_factor();
-	start->x *= scale;
-	start->y *= scale;
-	end->x *= scale;
-	end->y *= scale;
+void isometric(t_fdf *fdf, t_point *start, t_point *end)
+{
+	t_point new_start;
+	t_point new_end;
+	double rad_45;
+	double rad_54;
+
+	new_start.x = (start->x - start->y) * cos(VERTICAL_ROTATION_ANGLE);
+	new_start.y = (start->x + start->y) * sin(HORIZONTAL_ROTATION_ANGLE) - \
+	start->z;
+	new_end.x = (end->x - end->y) * cos(VERTICAL_ROTATION_ANGLE);
+	new_end.y = (end->x + end->y) * sin(HORIZONTAL_ROTATION_ANGLE) - \
+	end->z;
+	start->x = new_start.x;
+	start->y = new_start.y;
+	end->x = new_end.x;
+	end->y = new_end.y;
 }
 
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf;
 
-	// mlx_set_setting(MLX_HEADLESS, 1);
 	fdf = init_fdf(argv[1]);
 	render(fdf);
 	mlx_loop(fdf->mlx);

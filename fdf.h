@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/03 16:05:30 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:56:25 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <fcntl.h>
+#include <math.h>
+
+#define VERTICAL_ROTATION_ANGLE 0.8
+#define HORIZONTAL_ROTATION_ANGLE 0.8
+
+// test only
+#include <stdio.h>
 
 #define WINDOW_WIDTH 1300
 #define WINDOW_HEIGHT 900
@@ -79,4 +86,5 @@ t_fdf *init_fdf(char *map_name);
 // line drawing
 void draw_line(t_fdf *data, t_point start, t_point end);
 uint32_t put_alpha(uint32_t color);
+float get_scale(t_fdf *fdf);
 #endif
