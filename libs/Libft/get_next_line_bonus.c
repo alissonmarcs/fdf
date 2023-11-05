@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:59:30 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/17 08:36:42 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/05 09:26:45 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static char	*ft_join_and_free(char const *s1, char const *s2);
 
 char	*get_next_line(int fd)
 {
-	static char	*after_new_line_content[1024];
 	char		*line;
+	static char	*after_new_line_content[1024];
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
@@ -37,6 +37,8 @@ static char	*ft_read_file(int fd, char *buffer)
 	char	*file_content;
 	ssize_t	num_bytes;
 
+	if (ft_strchr(buffer, '\n'))
+		return (buffer);
 	file_content = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!file_content)
 		return (NULL);
@@ -59,9 +61,9 @@ static char	*ft_read_file(int fd, char *buffer)
 
 static char	*ft_make_line(char *content)
 {
-	char	*new_line_position;
 	char	*line;
 	size_t	line_size;
+	char	*new_line_position;
 
 	if (content[0] == '\0')
 		return (NULL);
@@ -69,18 +71,18 @@ static char	*ft_make_line(char *content)
 	if (new_line_position == NULL)
 		return (ft_strdup(content));
 	else
-		line_size = (new_line_position - content) + 1;
-	line = malloc((line_size + 1) * sizeof(char));
+		line_size = (new_line_position - content) + 2;
+	line = malloc((line_size) * sizeof(char));
 	if (!line)
 		return (NULL);
-	ft_strlcpy(line, content, line_size + 1);
+	ft_strlcpy(line, content, line_size);
 	return (line);
 }
 
 static char	*ft_update_buffer(char *buffer)
 {
-	char	*new_line_position;
 	char	*new_buffer;
+	char	*new_line_position;
 
 	new_line_position = ft_strchr(buffer, '\n');
 	if (new_line_position == NULL)

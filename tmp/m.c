@@ -3,9 +3,11 @@
 
 int main()
 {
-	double result;
+	float test;
 
-	result = sin(0.8);
-	printf("%lf\n", result);
+	test = 14.7;
+	test *= 2.8;
+	printf("%f\n", test);
+	printf("%d\n", (int) test);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/04 15:56:25 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:26:03 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
 
 typedef struct s_point
 {
-	int x;
-	int y;
-	int z;
+	float x;
+	float y;
+	float z;
 	uint32_t color;
 } t_point;
 
@@ -48,6 +48,10 @@ typedef struct s_map
 typedef struct s_cam
 {
 	float scale;
+	float x_offset;
+	float y_offset;
+	float x_percent;
+	float y_percent;
 } t_cam;
 
 
@@ -56,7 +60,7 @@ typedef struct s_fdf
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_map *map;
-	t_cam cam;
+	t_cam *cam;
 }				t_fdf;
 
 typedef struct s_line_drawing_data
@@ -80,8 +84,9 @@ void free_split(char **split_line);
 void error_handler(short exit_status);
 
 // inits
-t_map *init_map(void);
 t_fdf *init_fdf(char *map_name);
+t_map *init_map(void);
+t_cam *init_cam(t_fdf *fdf);
 
 // line drawing
 void draw_line(t_fdf *data, t_point start, t_point end);

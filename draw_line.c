@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:00 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/03 14:23:42 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:53:59 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 	walker.x = start.x;
 	walker.y = start.y;
 	walker.color = start.color;
-	mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+	mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 	if (line_data.dx == 0)
 	{
 		if (end.y > start.y)
@@ -38,7 +38,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 			while (walker.y != end.y)
 			{
 				walker.y++;
-				mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+				mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			}
 		}
 		else
@@ -46,7 +46,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 			while (walker.y != end.y)
 			{
 				walker.y--;
-				mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+				mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			}
 			
 		}
@@ -58,7 +58,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 			while (walker.x != end.x)
 			{
 				walker.x++;
-				mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+				mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			}
 		}
 		else
@@ -66,7 +66,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 			while (walker.x != end.x)
 			{
 				walker.x--;
-				mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+				mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			}
 		}
 	}
@@ -75,7 +75,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 		if (line_data.dx >= line_data.dy)
 		{
 			line_data.control = line_data.dx / 2;
-			mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+			mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			while (walker.x != end.x)
 			{
 				walker.x += line_data.incX;
@@ -85,13 +85,13 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 					walker.y += line_data.incY;
 					line_data.control += line_data.dx;
 				}
-				mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+				mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			}
 		}
 		else
 		{
 			line_data.control = line_data.dy / 2;
-			mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+			mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			while (walker.y != end.y)
 			{
 				walker.y += line_data.incY;
@@ -101,7 +101,7 @@ void draw_line(t_fdf *data, t_point start, t_point end)
 					walker.x += line_data.incX;
 					line_data.control += line_data.dy;
 				}
-				mlx_put_pixel(data->img, walker.x, walker.y, walker.color);
+				mlx_put_pixel(data->img, (int) walker.x, (int) walker.y, walker.color);
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:49:03 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/02 14:04:53 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:10:45 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void error_handler(short exit_status)
 		ft_putstr_fd("Initialization for MLX42 failed.\n", 1);
 	else if (exit_status == 5)
 		ft_putstr_fd("Creation of image for MLX42 failed.\n", 1);
+	else if (exit_status == 6)
+		ft_putstr_fd("Allocation of memory for cam struct failed\n.", 1);
 	exit(exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:38:35 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/03 14:59:38 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:59:23 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ static void	process_line(t_map *map, char **spli_line, int line_number)
 	column_number = 0;
 	while (column_number < map->width)
 	{
-		map->matrix[line_number][column_number].x = column_number;
-		map->matrix[line_number][column_number].y = line_number;
-		map->matrix[line_number][column_number].z = ft_atoi(spli_line[column_number]);
+		map->matrix[line_number][column_number].x = (float) column_number;
+		map->matrix[line_number][column_number].y = (float) line_number;
+		map->matrix[line_number][column_number].z = (float) ft_atoi(spli_line[column_number]);
 		if ((color = ft_strchr(spli_line[column_number], ',')))
 		{
 			map->matrix[line_number][column_number].color = put_alpha(ft_hex_to_int(color + 1));
