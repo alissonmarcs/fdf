@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:53:31 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/10 15:49:43 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:23:40 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	render(t_fdf *fdf)
 					fdf->map->matrix[y][x + 1]);
 			if (y + 1 < fdf->map->height)
 				transformations(fdf, fdf->map->matrix[y][x],
-				fdf->map->matrix[y + 1][x]);
+					fdf->map->matrix[y + 1][x]);
 			x++;
 		}
 		y++;
