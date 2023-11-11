@@ -1,13 +1,21 @@
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
-	float test;
+	char *ptr;
+	unsigned int *int_ptr;
 
-	test = 14.7;
-	test *= 2.8;
-	printf("%f\n", test);
-	printf("%d\n", (int) test);
-	return (0);
+	ptr = malloc(15);
+	int_ptr = (unsigned int *) ptr;
+
+	printf("%p\n", ptr);
+	printf("%p\n", int_ptr);
+
+
+	*int_ptr = 0xfe000000;
+
+	for (int i = 0; i < 8; i++)
+		printf("%d\n", ptr[i]);
 }

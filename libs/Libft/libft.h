@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:01:10 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/05 09:24:41 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:14:11 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int					ft_hex_to_int(char *str);
 // *** GNL ***
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 900
+#  define BUFFER_SIZE 30000
 # endif
 
 char				*get_next_line(int fd);

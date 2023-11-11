@@ -6,11 +6,11 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:52:44 by almarcos          #+#    #+#             */
-/*   Updated: 2023/10/24 11:52:53 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:11:01 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_abs(int n)
+int	ft_abs(int n)
 {
 	if (n < 0)
 		return (-n);

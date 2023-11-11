@@ -40,12 +40,12 @@ int main()
 		error();
 	ft_bzero(data.img->pixels, data.img->width * data.img->height);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	
+
 	start.x = WIDTH / 2;
 	start.y = HEIGHT / 2;
 	start.color = 0x0000FFFFU;
 	end.x = WIDTH - 1;
-	
+
 	end.y = 0;
 	while (end.y <= (HEIGHT - 1))
 	{

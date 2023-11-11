@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hex_to_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:54:31 by alisson           #+#    #+#             */
-/*   Updated: 2023/10/26 16:55:10 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/10 10:47:07 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_hex_to_int(char *str)
 {
-	int result;
-	int byte;
+	int	result;
+	int	byte;
 
 	result = 0;
 	while (*str != ' ' && *str)
