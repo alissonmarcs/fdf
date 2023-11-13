@@ -6,32 +6,41 @@
 #    By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:54:44 by almarcos          #+#    #+#              #
-#    Updated: 2023/11/10 15:58:59 by almarcos         ###   ########.fr        #
+#    Updated: 2023/11/13 09:59:35 by almarcos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
+NAME_BONUS = fdf_bonus
 LIBFT = libs/Libft/libft.a
 MLX42 = libs/MLX42/build/libmlx42.a
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 CFLAGS = -Wall -Werror -Wextra -g3 -O0
-HEADERS = -I libs/Libft/ -I libs/MLX42/include/
+LIBS_HEADERS = -I libs/Libft/ -I libs/MLX42/include/
+
+OBJECTS_FOLDER = ./obj/
 
 MANDATORY_FOLDER = ./mandatory/
 MANDATORY_SOURCES = $(addprefix $(MANDATORY_FOLDER), main.c parse_map.c \
 	parse_map_utils.c draw_line.c draw_line_utils.c render.c render_utils.c \
 	inits.c handling_errors.c)
+MANDATORY_OBJECTS = $(subst $(MANDATORY_FOLDER),$(OBJECTS_FOLDER),$(MANDATORY_SOURCES:.c=.o))
 
-OBJECTS_FOLDER = ./obj/
-OBJECTS = $(subst mandatory,obj,$(MANDATORY_SOURCES:.c=.o))
+BONUS_FOLDER = ./bonus/
+BONUS_SOURCES = $(addprefix $(BONUS_FOLDER), main_bonus.c \
+	parse_map_bonus.c parse_map_utils_bonus.c draw_line_bonus.c  \
+	draw_line_utils_bonus.c render_bonus.c render_utils_bonus.c \
+	inits_bonus.c handling_errors_bonus.c)
+BONUS_OBJECTS = $(subst $(BONUS_FOLDER),$(OBJECTS_FOLDER),$(BONUS_SOURCES:.c=.o))
+
 
 all: $(OBJECTS_FOLDER) $(NAME)
 
 $(OBJECTS_FOLDER):
-	mkdir -p $(OBJECTS_FOLDER)
+	mkdir $(OBJECTS_FOLDER)
 
-$(NAME): libs $(OBJECTS)
-	cc $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(HEADERS) -o $@
+$(NAME): libs $(MANDATORY_OBJECTS)
+	cc $(CFLAGS) $(MANDATORY_OBJECTS) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(LIBS_HEADERS) -o $(NAME)
 
 libs: $(LIBFT) $(MLX42)
 
@@ -43,7 +52,15 @@ $(MLX42):
 	cd libs/MLX42/ && cmake --build build -j4
 
 $(OBJECTS_FOLDER)%.o: $(MANDATORY_FOLDER)%.c $(MANDATORY_FOLDER)fdf.h
-	cc $(CFLAGS) $(HEADERS) -c $< -o $@
+	cc $(CFLAGS) $(LIBS_HEADERS) -c $< -o $@
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): libs $(BONUS_OBJECTS)
+	cc $(CFLAGS) $(BONUS_OBJECTS) $(LIBFT) $(MLX42) $(MLX42_FLAGS) $(LIBS_HEADERS) -o $(NAME_BONUS)
+
+$(OBJECTS_FOLDER)%.o: $(BONUS_FOLDER)%.c $(BONUS_FOLDER)fdf_bonus.h
+	cc $(CFLAGS) $(LIBS_HEADERS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJECTS_FOLDER)*
@@ -56,3 +73,5 @@ clean_libs:
 	rm -rf libs/MLX42/build
 
 re: fclean all
+
+.PHONY: bonus clean fclean clean_libs
