@@ -21,10 +21,10 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-# define VERTICAL_ROTATION_ANGLE 0.2
-# define HORIZONTAL_ROTATION_ANGLE 0.2
+# define WINDOW_WIDTH 1300
+# define WINDOW_HEIGHT 900
+# define VERTICAL_ROTATION_ANGLE 0.610865
+# define HORIZONTAL_ROTATION_ANGLE 0.785398
 
 // test only
 # include <stdio.h>
