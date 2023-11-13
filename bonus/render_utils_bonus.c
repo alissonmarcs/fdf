@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:32:54 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/13 09:43:57 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:39:53 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ float	get_scale(t_fdf *fdf)
 		scale = scale_x;
 	else
 		scale = scale_y;
-	if (scale < 3)
-		return (scale);
-	return (scale / 1.2);
+	return (scale / 1.55);
 }
 
 void	center_to_origin(t_map *map)
