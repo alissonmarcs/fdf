@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/11 09:07:28 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:58:59 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-# define VERTICAL_ROTATION_ANGLE 0.8
-# define HORIZONTAL_ROTATION_ANGLE 0.5
+# define WINDOW_WIDTH 1300
+# define WINDOW_HEIGHT 900
+# define VERTICAL_ROTATION_ANGLE 0.610865
+# define HORIZONTAL_ROTATION_ANGLE 0.785398
 
 // test only
 # include <stdio.h>
