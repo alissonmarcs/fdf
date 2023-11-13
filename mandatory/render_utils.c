@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:32:54 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/13 11:16:07 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:44:29 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ float	get_scale(t_fdf *fdf)
 		scale = scale_x;
 	else
 		scale = scale_y;
-	if (scale < 3)
-		return (scale / 1.5);
 	return (scale / 1.55);
 }
 
