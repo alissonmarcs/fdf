@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_bonus.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/11 10:43:45 by almarcos         ###   ########.fr       */
+/*   Created: 2023/11/15 11:27:26 by almarcos          #+#    #+#             */
+/*   Updated: 2023/11/15 11:28:05 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#ifndef FDF_BONUS_H
 
-# define FDF_H
+# define FDF_BONUS_H
 
 # include <MLX42/MLX42.h>
 # include <fcntl.h>
@@ -23,6 +23,7 @@
 
 # define WINDOW_WIDTH 1300
 # define WINDOW_HEIGHT 900
+# define ONE_DEGREE_IN_RADIUS 0.01745329
 # define VERTICAL_ROTATION_ANGLE 0.610865
 # define HORIZONTAL_ROTATION_ANGLE 0.785398
 
@@ -51,6 +52,7 @@ typedef struct s_cam
 	float		x_offset;
 	float		y_offset;
 	float		z_scale;
+	float		rotation_angle_y;
 }				t_cam;
 
 typedef struct s_fdf
@@ -100,12 +102,15 @@ float			get_scale(t_fdf *fdf);
 void			set_background(t_fdf *fdf);
 
 // rendering
-void			render(t_fdf *fdf);
+void			render(void *fdf);
 void			transformations(t_fdf *fdf, t_point start, t_point end);
 void			scale(t_fdf *fdf, t_point *start, t_point *end);
 void			isometric(t_fdf *fdf, t_point *start, t_point *end);
 void			centralize(t_fdf *fdf, t_point *start, t_point *end);
 
-// hook
-void			hook(void *param);
+// handling keypress
+void			key_press_handler(mlx_key_data_t keydata, void *param);
+
+// transformations
+void			rotate_y(t_fdf *fdf, t_point *start, t_point *end, float angle);
 #endif

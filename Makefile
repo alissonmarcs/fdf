@@ -6,7 +6,7 @@
 #    By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 14:54:44 by almarcos          #+#    #+#              #
-#    Updated: 2023/11/13 09:59:35 by almarcos         ###   ########.fr        #
+#    Updated: 2023/11/14 14:43:43 by almarcos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ BONUS_FOLDER = ./bonus/
 BONUS_SOURCES = $(addprefix $(BONUS_FOLDER), main_bonus.c \
 	parse_map_bonus.c parse_map_utils_bonus.c draw_line_bonus.c  \
 	draw_line_utils_bonus.c render_bonus.c render_utils_bonus.c \
-	inits_bonus.c handling_errors_bonus.c)
+	inits_bonus.c handling_errors_bonus.c key_press_handling_bonus.c \
+	cam_transform.c)
 BONUS_OBJECTS = $(subst $(BONUS_FOLDER),$(OBJECTS_FOLDER),$(BONUS_SOURCES:.c=.o))
 
 

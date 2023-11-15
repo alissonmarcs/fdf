@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/13 10:58:59 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:08:55 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ void			isometric(t_fdf *fdf, t_point *start, t_point *end);
 void			centralize(t_fdf *fdf, t_point *start, t_point *end);
 
 // hook
-void			hook(void *param);
+void			close_window(void *param);
 #endif

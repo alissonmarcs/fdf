@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:32:54 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/13 11:44:29 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:09:07 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,17 @@ void	center_to_origin(t_map *map)
 void	set_background(t_fdf *fdf)
 {
 	uint32_t	i;
-	uint32_t	*ptr;
+	uint32_t	*pixel;
+	uint32_t	numb_pixels;
 
 	i = 0;
-	ptr = (uint32_t *)fdf->img->pixels;
-	while (i < fdf->img->height * fdf->img->width)
-	{
-		ptr[i] = 0xff000000;
-		i++;
-	}
+	pixel = (uint32_t *)fdf->img->pixels;
+	numb_pixels = fdf->img->height * fdf->img->width;
+	while (i < numb_pixels)
+		pixel[i++] = 0xff000000;
 }
 
-void	hook(void *param)
+void	close_window(void *param)
 {
 	t_fdf	*fdf;
 

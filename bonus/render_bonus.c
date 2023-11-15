@@ -6,29 +6,32 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:53:31 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/13 09:43:57 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:29:14 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	render(t_fdf *fdf)
+void	render(void *fdf)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	t_fdf	*temp;
 
+	temp = (t_fdf *)fdf;
+	set_background(fdf);
 	y = 0;
-	while (y + 1 <= fdf->map->height)
+	while (y + 1 <= temp->map->height)
 	{
 		x = 0;
-		while (x + 1 <= fdf->map->width)
+		while (x + 1 <= temp->map->width)
 		{
-			if (x + 1 < fdf->map->width)
-				transformations(fdf, fdf->map->matrix[y][x],
-					fdf->map->matrix[y][x + 1]);
-			if (y + 1 < fdf->map->height)
-				transformations(fdf, fdf->map->matrix[y][x],
-					fdf->map->matrix[y + 1][x]);
+			if (x + 1 < temp->map->width)
+				transformations(temp, temp->map->matrix[y][x],
+					temp->map->matrix[y][x + 1]);
+			if (y + 1 < temp->map->height)
+				transformations(temp, temp->map->matrix[y][x],
+					temp->map->matrix[y + 1][x]);
 			x++;
 		}
 		y++;
@@ -39,6 +42,7 @@ void	transformations(t_fdf *fdf, t_point start, t_point end)
 {
 	scale(fdf, &start, &end);
 	isometric(fdf, &start, &end);
+	rotate_y(fdf, &start, &end, fdf->cam->rotation_angle_y);
 	centralize(fdf, &start, &end);
 	draw_line(fdf, start, end);
 }
