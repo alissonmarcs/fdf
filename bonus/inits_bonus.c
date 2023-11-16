@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/14 13:31:25 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:47:46 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ t_cam	*init_cam(t_fdf *fdf)
 	cam->x_offset = (WINDOW_WIDTH / 2);
 	cam->y_offset = (WINDOW_HEIGHT / 2);
 	cam->z_scale = 1;
-	cam->rotation_angle_y = ONE_DEGREE_IN_RADIUS;
+	cam->rotation_angle_x = 0;
+	cam->rotation_angle_y = 0;
+	cam->rotation_angle_z = 0;
 	if (fdf->map->z_max <= 20)
 		cam->z_scale = 10;
 	return (cam);

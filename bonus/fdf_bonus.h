@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:27:26 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/15 11:28:05 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:00:50 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ typedef struct s_cam
 	float		x_offset;
 	float		y_offset;
 	float		z_scale;
+	float		rotation_angle_x;
 	float		rotation_angle_y;
+	float		rotation_angle_z;
 }				t_cam;
 
 typedef struct s_fdf
@@ -112,5 +114,8 @@ void			centralize(t_fdf *fdf, t_point *start, t_point *end);
 void			key_press_handler(mlx_key_data_t keydata, void *param);
 
 // transformations
-void			rotate_y(t_fdf *fdf, t_point *start, t_point *end, float angle);
+void			rotate_y(t_point *start, t_point *end, float angle);
+void			rotate_x(t_fdf *fdf, t_point *start, t_point *end, float angle);
+void			rotate_z(t_point *start, t_point *end, float angle);
+void			reset_view(t_fdf *fdf);
 #endif

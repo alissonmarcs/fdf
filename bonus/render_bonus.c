@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:53:31 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/15 11:29:14 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:55:15 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	transformations(t_fdf *fdf, t_point start, t_point end)
 {
 	scale(fdf, &start, &end);
 	isometric(fdf, &start, &end);
-	rotate_y(fdf, &start, &end, fdf->cam->rotation_angle_y);
+	//rotate_x(fdf, &start, &end, fdf->cam->rotation_angle_x);
+	rotate_y(&start, &end, fdf->cam->rotation_angle_y);
+	//rotate_z(&start, &end, fdf->cam->rotation_angle_z);
 	centralize(fdf, &start, &end);
 	draw_line(fdf, start, end);
 }
