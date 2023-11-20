@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/16 17:47:46 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:49:37 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,25 @@ t_cam	*init_cam(t_fdf *fdf)
 	cam = malloc(sizeof(t_cam));
 	if (!cam)
 		error_handler(6);
-	cam->scale = get_scale(fdf);
-	cam->x_offset = (WINDOW_WIDTH / 2);
-	cam->y_offset = (WINDOW_HEIGHT / 2);
-	cam->z_scale = 1;
-	cam->rotation_angle_x = 0;
-	cam->rotation_angle_y = 0;
-	cam->rotation_angle_z = 0;
-	if (fdf->map->z_max <= 20)
-		cam->z_scale = 10;
+	new_camera(fdf, cam, ISOMETRIC);
 	return (cam);
 }
 
-void	init_line_data(t_line_drawing_data *line_data, t_point start,
-		t_point end)
+void	init_line_data(t_line_drawing_data *line_data, t_point *start,
+		t_point *end)
 {
-	line_data->dx = ft_abs(end.x - start.x);
-	line_data->dy = ft_abs(end.y - start.y);
-	if (end.x > start.x)
+	start->x = roundf(start->x);
+	start->y = roundf(start->y);
+	end->x = roundf(end->x);
+	end->y = roundf(end->y);
+	line_data->dx = ft_abs(end->x - start->x);
+	line_data->dy = ft_abs(end->y - start->y);
+	line_data->control = 0;
+	if (end->x > start->x)
 		line_data->inc_x = 1;
 	else
 		line_data->inc_x = -1;
-	if (end.y > start.y)
+	if (end->y > start->y)
 		line_data->inc_y = 1;
 	else
 		line_data->inc_y = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/15 12:19:48 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:20:27 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_cam	*init_cam(t_fdf *fdf)
 	cam->z_scale = 1;
 	if (fdf->map->z_max <= 20)
 		cam->z_scale = 10;
+	else if (fdf->map->z_max > 1000)
+		cam->z_scale = 0.03;
 	return (cam);
 }
 

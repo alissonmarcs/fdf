@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:53:31 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/11 10:23:40 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:09:57 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	render(t_fdf *fdf)
 	int	x;
 	int	y;
 
+	set_background(fdf);
 	y = 0;
 	while (y + 1 <= fdf->map->height)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:32:54 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/15 12:09:07 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:06:19 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 uint32_t	put_alpha(uint32_t color)
 {
-	uint32_t		color_with_alpha;
+	uint32_t		new_color;
 	unsigned char	*ptr;
 
-	color_with_alpha = color << 8;
-	ptr = (unsigned char *)&color_with_alpha;
+	new_color = color << 8;
+	ptr = (unsigned char *)&new_color;
 	*ptr = 255;
-	return (color_with_alpha);
+	return (new_color);
 }
 
 float	get_scale(t_fdf *fdf)
@@ -40,8 +40,8 @@ float	get_scale(t_fdf *fdf)
 
 void	center_to_origin(t_map *map)
 {
-	int	x;
-	int	y;
+	unsigned short	x;
+	unsigned short	y;
 
 	y = 0;
 	while (y < map->height)
@@ -59,15 +59,13 @@ void	center_to_origin(t_map *map)
 
 void	set_background(t_fdf *fdf)
 {
-	uint32_t	i;
 	uint32_t	*pixel;
-	uint32_t	numb_pixels;
+	uint32_t	index;
 
-	i = 0;
 	pixel = (uint32_t *)fdf->img->pixels;
-	numb_pixels = fdf->img->height * fdf->img->width;
-	while (i < numb_pixels)
-		pixel[i++] = 0xff000000;
+	index = fdf->img->height * fdf->img->width;
+	while (index--)
+		pixel[index] = 0xff000000;
 }
 
 void	close_window(void *param)

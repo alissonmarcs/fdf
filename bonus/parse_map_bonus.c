@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:38:35 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/16 15:24:09 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:34:36 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,12 @@ static void	process_line(t_map *map, char **spli_line, int line_number)
 			map->matrix[line_number][column_number].color = \
 					put_alpha(ft_hex_to_int(color + 1));
 		else
-			map->matrix[line_number][column_number].color = 0xffffffff;
+		{
+			if (map->matrix[line_number][column_number].z <= 0)
+				map->matrix[line_number][column_number].color = 0x4ea8de;
+			else
+				map->matrix[line_number][column_number].color = 0xfffb6f92;
+		}
 		column_number++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:27:26 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/16 17:00:50 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 19:21:07 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-# define WINDOW_WIDTH 1300
-# define WINDOW_HEIGHT 900
+# define WINDOW_WIDTH 1980
+# define WINDOW_HEIGHT 1080
 # define ONE_DEGREE_IN_RADIUS 0.01745329
 # define VERTICAL_ROTATION_ANGLE 0.610865
 # define HORIZONTAL_ROTATION_ANGLE 0.785398
@@ -48,10 +48,12 @@ typedef struct s_map
 
 typedef struct s_cam
 {
+	short		projection;
 	float		scale;
 	float		x_offset;
 	float		y_offset;
-	float		z_scale;
+	float		z_scale_default;
+	float		z_scale_factor;
 	float		rotation_angle_x;
 	float		rotation_angle_y;
 	float		rotation_angle_z;
@@ -67,12 +69,18 @@ typedef struct s_fdf
 
 typedef struct s_line_drawing_data
 {
-	int			dx;
-	int			dy;
-	int			control;
-	int			inc_x;
-	int			inc_y;
+	short			dx;
+	short			dy;
+	short			control;
+	short			inc_x;
+	short			inc_y;
 }				t_line_drawing_data;
+
+enum e_projection
+{
+	ISOMETRIC,
+	TOP_VIEW
+};
 
 // map parsing
 t_map			*parse_map(t_fdf *fdf, char *map_name);
@@ -91,11 +99,11 @@ void			error_handler(short exit_status);
 t_fdf			*init_fdf(char *map_name);
 t_map			*init_map(void);
 t_cam			*init_cam(t_fdf *fdf);
-void			init_line_data(t_line_drawing_data *line_data, t_point start,
-					t_point end);
+void			init_line_data(t_line_drawing_data *line_data, t_point *start,
+					t_point *end);
 
 // line drawing
-void			put_pixel(t_fdf *fdf, uint32_t x, uint32_t y, uint32_t color);
+void			put_pixel(t_fdf *fdf, int x, int y, uint32_t color);
 void			draw_line(t_fdf *data, t_point start, t_point end);
 
 // utils
@@ -104,18 +112,16 @@ float			get_scale(t_fdf *fdf);
 void			set_background(t_fdf *fdf);
 
 // rendering
-void			render(void *fdf);
-void			transformations(t_fdf *fdf, t_point start, t_point end);
-void			scale(t_fdf *fdf, t_point *start, t_point *end);
-void			isometric(t_fdf *fdf, t_point *start, t_point *end);
-void			centralize(t_fdf *fdf, t_point *start, t_point *end);
+void			render(void *param);
 
 // handling keypress
-void			key_press_handler(mlx_key_data_t keydata, void *param);
+void			key_press_handler(void *param);
 
 // transformations
-void			rotate_y(t_point *start, t_point *end, float angle);
 void			rotate_x(t_fdf *fdf, t_point *start, t_point *end, float angle);
+void			rotate_y(t_point *start, t_point *end, float angle);
 void			rotate_z(t_point *start, t_point *end, float angle);
-void			reset_view(t_fdf *fdf);
+void 			zoom(t_fdf *fdf);
+void 			projection(t_fdf *fdf);
+void new_camera(t_fdf *fdf, t_cam *cam, short PROJECTION);
 #endif

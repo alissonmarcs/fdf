@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cam_transform.c                                    :+:      :+:    :+:   */
+/*   cam_transform_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:32:08 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/16 16:55:18 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:42:22 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void rotate_x(t_fdf *fdf, t_point *start, t_point *end, float angle)
 
 	cos_angle = cos(angle);
 	sin_angle = sin(angle);
-	new_start.y = start->y * cos_angle - (start->z * fdf->cam->z_scale)
+	new_start.y = start->y * cos_angle - (start->z * fdf->cam->z_scale_default)
 		* sin_angle;
-	new_start.z = start->y * sin_angle + (start->z * fdf->cam->z_scale)
+	new_start.z = start->y * sin_angle + (start->z * fdf->cam->z_scale_default)
 		* cos_angle;
-	new_end.y = end->y * cos_angle - (end->z * fdf->cam->z_scale) * sin_angle;
-	new_end.z = end->y * sin_angle + (end->z * fdf->cam->z_scale) * cos_angle;
+	new_end.y = end->y * cos_angle - (end->z * fdf->cam->z_scale_default) * sin_angle;
+	new_end.z = end->y * sin_angle + (end->z * fdf->cam->z_scale_default) * cos_angle;
 	start->y = new_start.y;
 	start->z = new_start.z;
 	end->y = new_end.y;

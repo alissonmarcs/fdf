@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:42:12 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/15 15:35:19 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:48:45 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int argc, char **argv)
 		error_handler(7);
 	validate_map_name(argv[1]);
 	fdf = init_fdf(argv[1]);
-	mlx_key_hook(fdf->mlx, key_press_handler, fdf);
 	mlx_loop_hook(fdf->mlx, render, fdf);
+	mlx_loop_hook(fdf->mlx, key_press_handler, fdf);
 	mlx_loop(fdf->mlx);
 	mlx_terminate(fdf->mlx);
 	free_matrix(fdf->map);
