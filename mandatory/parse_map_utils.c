@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:34:04 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/10 15:54:56 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:58:06 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ int	validade_lines(int fd, int size)
 	return (check);
 }
 
+uint32_t	put_alpha(uint32_t color)
+{
+	uint32_t		new_color;
+	unsigned char	*ptr;
+
+	new_color = color << 8;
+	ptr = (unsigned char *)&new_color;
+	*ptr = 255;
+	return (new_color);
+}
+
 void	clear_invalid_map(t_fdf *fdf, t_map *map)
 {
 	free(fdf);
@@ -47,38 +58,36 @@ void	clear_invalid_map(t_fdf *fdf, t_map *map)
 	error_handler(2);
 }
 
-t_point	**alloc_matrix(int width, int height)
+float	get_scale(t_fdf *fdf)
 {
-	t_point	**matrix;
+	float	scale;
+	float	scale_x;
+	float	scale_y;
 
-	matrix = malloc(height * sizeof(t_point *));
-	if (!matrix)
-		error_handler(3);
-	while (height--)
-	{
-		matrix[height] = ft_calloc(width, sizeof(t_point));
-		if (!matrix[height])
-			error_handler(3);
-	}
-	return (matrix);
+	scale_x = WINDOW_WIDTH / (float)fdf->map->width;
+	scale_y = WINDOW_HEIGHT / (float)fdf->map->height;
+	if (scale_x < scale_y)
+		scale = scale_x;
+	else
+		scale = scale_y;
+	return (scale / 1.55);
 }
 
-void	free_matrix(t_map *map)
+void	center_to_origin(t_map *map)
 {
-	while (map->height--)
-		free(map->matrix[map->height]);
-	free(map->matrix);
-}
+	unsigned short	x;
+	unsigned short	y;
 
-void	free_split(char **split_line)
-{
-	int	index;
-
-	index = 0;
-	while (split_line[index] != NULL)
+	y = 0;
+	while (y < map->height)
 	{
-		free(split_line[index]);
-		index++;
+		x = 0;
+		while (x < map->width)
+		{
+			map->matrix[y][x].x -= map->width / 2;
+			map->matrix[y][x].y -= map->height / 2;
+			x++;
+		}
+		y++;
 	}
-	free(split_line);
 }

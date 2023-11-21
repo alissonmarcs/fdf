@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:06:15 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/10 15:11:01 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:46:18 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_line(t_fdf *fdf, t_point start, t_point end)
 {
 	t_line_drawing_data	line_data;
 
-	init_line_data(&line_data, start, end);
+	new_line_data(&line_data, start, end);
 	if (line_data.dx == 0)
 		draw_vertical_line(fdf, start, end);
 	else if (line_data.dy == 0)

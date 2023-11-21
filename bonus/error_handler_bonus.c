@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handling_errors.c                                  :+:      :+:    :+:   */
+/*   error_handler_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:49:03 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/11 09:32:58 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:01:41 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-void	validate_map_name(char *map_name)
-{
-	int	fd;
-
-	if (!ft_strnstr(map_name, ".fdf", ft_strlen(map_name)))
-		error_handler(8);
-	fd = open(map_name, O_RDONLY);
-	if (fd < 0)
-		error_handler(9);
-	close(fd);
-}
+#include "fdf_bonus.h"
 
 void	error_handler(short exit_status)
 {

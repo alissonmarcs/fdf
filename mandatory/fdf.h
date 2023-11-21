@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/15 12:08:55 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:56:57 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 # define WINDOW_HEIGHT 900
 # define VERTICAL_ROTATION_ANGLE 0.610865
 # define HORIZONTAL_ROTATION_ANGLE 0.785398
-
-// test only
-# include <stdio.h>
 
 typedef struct s_point
 {
@@ -72,40 +69,40 @@ typedef struct s_line_drawing_data
 
 // map parsing
 t_map			*parse_map(t_fdf *fdf, char *map_name);
-int				validade_lines(int fd, int size);
 void			validate_map_name(char *map_name);
+int				validade_lines(int fd, int size);
 void			center_to_origin(t_map *map);
-void			clear_invalid_map(t_fdf *fdf, t_map *map);
-t_point			**alloc_matrix(int width, int height);
-void			free_matrix(t_map *map);
-void			free_split(char **split_line);
-
-// error managment
-void			error_handler(short exit_status);
-
-// inits
-t_fdf			*init_fdf(char *map_name);
-t_map			*init_map(void);
-t_cam			*init_cam(t_fdf *fdf);
-void			init_line_data(t_line_drawing_data *line_data, t_point start,
-					t_point end);
-
-// line drawing
-void			put_pixel(t_fdf *fdf, uint32_t x, uint32_t y, uint32_t color);
-void			draw_line(t_fdf *data, t_point start, t_point end);
-
-// utils
 uint32_t		put_alpha(uint32_t color);
 float			get_scale(t_fdf *fdf);
-void			set_background(t_fdf *fdf);
+void			clear_invalid_map(t_fdf *fdf, t_map *map);
+
+// line drawing
+void			put_pixel(t_fdf *fdf, int x, int y, uint32_t color);
+void			draw_line(t_fdf *data, t_point start, t_point end);
 
 // rendering
+void			set_background(t_fdf *fdf);
 void			render(t_fdf *fdf);
 void			transformations(t_fdf *fdf, t_point start, t_point end);
 void			scale(t_fdf *fdf, t_point *start, t_point *end);
 void			isometric(t_fdf *fdf, t_point *start, t_point *end);
 void			centralize(t_fdf *fdf, t_point *start, t_point *end);
 
-// hook
+// news
+t_fdf			*new_fdf(char *map_name);
+t_map			*new_map(void);
+t_cam			*new_cam(t_fdf *fdf);
+void			new_line_data(t_line_drawing_data *line_data, t_point start,
+					t_point end);
+
+// error managment
+void			error_handler(short exit_status);
+
+// other utils
+t_point			**alloc_matrix(int width, int height);
+void			free_matrix(t_map *map);
+void			free_split(char **split_line);
+void			free_all(t_fdf *fdf);
 void			close_window(void *param);
+
 #endif

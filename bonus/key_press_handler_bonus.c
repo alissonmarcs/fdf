@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press_handling_bonus.c                         :+:      :+:    :+:   */
+/*   key_press_handler_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 09:04:24 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/20 18:55:03 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/21 16:06:01 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-static void movement(t_fdf *fdf);
-static void rotation(t_fdf *fdf);
-static void reset_view(t_fdf *fdf);
-static void z_scale(t_fdf *fdf);
+static void	movement(t_fdf *fdf);
+static void	rotation(t_fdf *fdf);
+static void	reset_view(t_fdf *fdf);
+static void	z_scale(t_fdf *fdf);
 
-void key_press_handler(void *param)
+void	key_press_handler(void *param)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
-	fdf = (t_fdf *) param;
+	fdf = (t_fdf *)param;
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	reset_view(fdf);
@@ -29,10 +29,10 @@ void key_press_handler(void *param)
 	z_scale(fdf);
 	rotation(fdf);
 	zoom(fdf);
-	projection(fdf);
+	toggle_projection(fdf);
 }
 
-static void z_scale(t_fdf *fdf)
+static void	z_scale(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_K))
 		fdf->cam->z_scale_default += fdf->cam->z_scale_factor;
@@ -40,7 +40,7 @@ static void z_scale(t_fdf *fdf)
 		fdf->cam->z_scale_default -= fdf->cam->z_scale_factor;
 }
 
-static void movement(t_fdf *fdf)
+static void	movement(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
 		fdf->cam->y_offset -= 25;
@@ -52,7 +52,7 @@ static void movement(t_fdf *fdf)
 		fdf->cam->x_offset += 25;
 }
 
-static void rotation(t_fdf *fdf)
+static void	rotation(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
 		fdf->cam->rotation_angle_y += (15 * ONE_DEGREE_IN_RADIUS);
@@ -68,9 +68,9 @@ static void rotation(t_fdf *fdf)
 		fdf->cam->rotation_angle_z -= (15 * ONE_DEGREE_IN_RADIUS);
 }
 
-static void reset_view(t_fdf *fdf)
+static void	reset_view(t_fdf *fdf)
 {
 	if (!mlx_is_key_down(fdf->mlx, MLX_KEY_R))
 		return ;
-	new_camera(fdf, fdf->cam, fdf->cam->projection);
+	set_camera(fdf, fdf->cam, fdf->cam->projection);
 }

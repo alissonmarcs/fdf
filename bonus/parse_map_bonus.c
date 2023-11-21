@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:38:35 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/20 14:34:36 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/21 16:04:26 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_map	*parse_map(t_fdf *fdf, char *map_name)
 {
 	t_map	*map;
 
-	map = init_map();
+	map = new_map();
 	map->width = get_map_width(map_name);
 	map->height = get_map_height(map_name);
 	if (map->width < 2 || map->height < 2)

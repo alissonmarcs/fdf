@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   inits_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/20 18:49:37 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/21 16:13:11 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-t_fdf	*init_fdf(char *map_name)
+t_fdf	*new_fdf(char *map_name)
 {
 	t_fdf	*fdf;
 
@@ -26,12 +26,12 @@ t_fdf	*init_fdf(char *map_name)
 	fdf->img = mlx_new_image(fdf->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!fdf->img)
 		error_handler(6);
-	fdf->cam = init_cam(fdf);
+	fdf->cam = new_camera(fdf);
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
 	return (fdf);
 }
 
-t_map	*init_map(void)
+t_map	*new_map(void)
 {
 	t_map	*map;
 
@@ -45,18 +45,39 @@ t_map	*init_map(void)
 	return (map);
 }
 
-t_cam	*init_cam(t_fdf *fdf)
+t_cam	*new_camera(t_fdf *fdf)
 {
 	t_cam	*cam;
 
 	cam = malloc(sizeof(t_cam));
 	if (!cam)
 		error_handler(6);
-	new_camera(fdf, cam, ISOMETRIC);
+	set_camera(fdf, cam, ISOMETRIC);
 	return (cam);
 }
 
-void	init_line_data(t_line_drawing_data *line_data, t_point *start,
+void	set_camera(t_fdf *fdf, t_cam *cam, short PROJECTION)
+{
+	cam->projection = PROJECTION;
+	cam->scale = get_scale(fdf);
+	cam->x_offset = (WINDOW_WIDTH / 2);
+	cam->y_offset = (WINDOW_HEIGHT / 2);
+	cam->rotation_angle_x = 0;
+	cam->rotation_angle_y = 0;
+	cam->rotation_angle_z = 0;
+	if (fdf->map->width <= 500)
+		cam->z_scale_factor = 2;
+	else
+		cam->z_scale_factor = 0.009;
+	if (fdf->map->z_max <= 20)
+		cam->z_scale_default = 10;
+	else if (fdf->map->z_max > 720)
+		cam->z_scale_default = 0.03;
+	else
+		cam->z_scale_default = 1;
+}
+
+void	new_line_data(t_line_drawing_data *line_data, t_point *start,
 		t_point *end)
 {
 	start->x = roundf(start->x);

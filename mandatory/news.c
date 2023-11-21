@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/20 12:20:27 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/21 15:45:55 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_fdf	*init_fdf(char *map_name)
+t_fdf	*new_fdf(char *map_name)
 {
 	t_fdf	*fdf;
 
@@ -26,12 +26,12 @@ t_fdf	*init_fdf(char *map_name)
 	fdf->img = mlx_new_image(fdf->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!fdf->img)
 		error_handler(6);
-	fdf->cam = init_cam(fdf);
+	fdf->cam = new_cam(fdf);
 	mlx_image_to_window(fdf->mlx, fdf->img, 0, 0);
 	return (fdf);
 }
 
-t_map	*init_map(void)
+t_map	*new_map(void)
 {
 	t_map	*map;
 
@@ -45,7 +45,7 @@ t_map	*init_map(void)
 	return (map);
 }
 
-t_cam	*init_cam(t_fdf *fdf)
+t_cam	*new_cam(t_fdf *fdf)
 {
 	t_cam	*cam;
 
@@ -58,12 +58,12 @@ t_cam	*init_cam(t_fdf *fdf)
 	cam->z_scale = 1;
 	if (fdf->map->z_max <= 20)
 		cam->z_scale = 10;
-	else if (fdf->map->z_max > 1000)
+	else if (fdf->map->z_max > 720)
 		cam->z_scale = 0.03;
 	return (cam);
 }
 
-void	init_line_data(t_line_drawing_data *line_data, t_point start,
+void	new_line_data(t_line_drawing_data *line_data, t_point start,
 		t_point end)
 {
 	line_data->dx = ft_abs(end.x - start.x);

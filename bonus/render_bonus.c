@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:53:31 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/20 17:42:53 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/21 16:11:12 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-static void			transformations(t_fdf *fdf, t_point start, t_point end);
-static void			scale(t_fdf *fdf, t_point *start, t_point *end);
-static void			isometric(t_fdf *fdf, t_point *start, t_point *end);
-static void			centralize(t_fdf *fdf, t_point *start, t_point *end);
+static void	transformations(t_fdf *fdf, t_point start, t_point end);
+static void	scale(t_fdf *fdf, t_point *start, t_point *end);
+static void	isometric(t_fdf *fdf, t_point *start, t_point *end);
+static void	centralize(t_fdf *fdf, t_point *start, t_point *end);
 
 void	render(void *param)
 {
-	t_fdf	*fdf;
-	unsigned short		x;
-	unsigned short		y;
+	t_fdf			*fdf;
+	unsigned short	x;
+	unsigned short	y;
 
 	fdf = (t_fdf *)param;
 	set_background(fdf);
@@ -35,8 +35,8 @@ void	render(void *param)
 				transformations(fdf, fdf->map->matrix[y][x],
 					fdf->map->matrix[y][x + 1]);
 			if (y + 1 < fdf->map->height)
-				transformations(fdf, fdf->map->matrix[y][x],
-					fdf->map->matrix[y + 1][x]);
+				transformations(fdf, fdf->map->matrix[y][x], fdf->map->matrix[y
+					+ 1][x]);
 			x++;
 		}
 		y++;

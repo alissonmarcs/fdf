@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:34:04 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/13 09:43:57 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:12:00 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,45 +40,59 @@ int	validade_lines(int fd, int size)
 	return (check);
 }
 
-void	clear_invalid_map(t_fdf *fdf, t_map *map)
+uint32_t	put_alpha(uint32_t color)
 {
-	free(fdf);
-	free(map);
-	error_handler(2);
+	uint32_t		new_color;
+	unsigned char	*ptr;
+
+	new_color = color << 8;
+	ptr = (unsigned char *)&new_color;
+	*ptr = 255;
+	return (new_color);
 }
 
-t_point	**alloc_matrix(int width, int height)
+float	get_scale(t_fdf *fdf)
 {
-	t_point	**matrix;
+	float	scale;
+	float	scale_x;
+	float	scale_y;
 
-	matrix = malloc(height * sizeof(t_point *));
-	if (!matrix)
-		error_handler(3);
-	while (height--)
+	scale_x = WINDOW_WIDTH / (float)fdf->map->width;
+	scale_y = WINDOW_HEIGHT / (float)fdf->map->height;
+	if (scale_x < scale_y)
+		scale = scale_x;
+	else
+		scale = scale_y;
+	return (scale / 1.55);
+}
+
+void	center_to_origin(t_map *map)
+{
+	unsigned short	x;
+	unsigned short	y;
+
+	y = 0;
+	while (y < map->height)
 	{
-		matrix[height] = ft_calloc(width, sizeof(t_point));
-		if (!matrix[height])
-			error_handler(3);
+		x = 0;
+		while (x < map->width)
+		{
+			map->matrix[y][x].x -= map->width / 2;
+			map->matrix[y][x].y -= map->height / 2;
+			x++;
+		}
+		y++;
 	}
-	return (matrix);
 }
 
-void	free_matrix(t_map *map)
+void	validate_map_name(char *map_name)
 {
-	while (map->height--)
-		free(map->matrix[map->height]);
-	free(map->matrix);
-}
+	int	fd;
 
-void	free_split(char **split_line)
-{
-	int	index;
-
-	index = 0;
-	while (split_line[index] != NULL)
-	{
-		free(split_line[index]);
-		index++;
-	}
-	free(split_line);
+	if (!ft_strnstr(map_name, ".fdf", ft_strlen(map_name)))
+		error_handler(8);
+	fd = open(map_name, O_RDONLY);
+	if (fd < 0)
+		error_handler(9);
+	close(fd);
 }

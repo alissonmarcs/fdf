@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:38:35 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/10 15:54:26 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:44:27 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_map	*parse_map(t_fdf *fdf, char *map_name)
 {
 	t_map	*map;
 
-	map = init_map();
+	map = new_map();
 	map->width = get_map_width(map_name);
 	map->height = get_map_height(map_name);
 	if (map->width < 2 || map->height < 2)
@@ -91,7 +91,12 @@ static void	process_line(t_map *map, char **spli_line, int line_number)
 			map->matrix[line_number][column_number].color = \
 					put_alpha(ft_hex_to_int(color + 1));
 		else
-			map->matrix[line_number][column_number].color = 0xffffffff;
+		{
+			if (map->matrix[line_number][column_number].z <= 0)
+				map->matrix[line_number][column_number].color = 0x4ea8de;
+			else
+				map->matrix[line_number][column_number].color = 0xfffb6f92;
+		}
 		column_number++;
 	}
 }
