@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:03:52 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 15:56:57 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:17:26 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # define WINDOW_WIDTH 1300
 # define WINDOW_HEIGHT 900
-# define VERTICAL_ROTATION_ANGLE 0.610865
-# define HORIZONTAL_ROTATION_ANGLE 0.785398
+# define X_AXIS_ANGLE_ROTATION_RADIUS 0.610865
+# define Z_AXIS_ANGLE_ROTATION_RADIUS 0.785398
 
 typedef struct s_point
 {
@@ -69,7 +69,7 @@ typedef struct s_line_drawing_data
 
 // map parsing
 t_map			*parse_map(t_fdf *fdf, char *map_name);
-void			validate_map_name(char *map_name);
+void			validate_map_file(char *map_name);
 int				validade_lines(int fd, int size);
 void			center_to_origin(t_map *map);
 uint32_t		put_alpha(uint32_t color);

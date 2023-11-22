@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handling_errors.c                                  :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:49:03 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 13:58:45 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:34:25 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,25 @@ void	error_handler(short exit_status)
 		ft_putstr_fd("Invalid extension in map name\n", 1);
 	else if (exit_status == 9)
 		ft_putstr_fd("Map does not exist\n", 1);
+	else if (exit_status == 10)
+		ft_putstr_fd("Empty map\n", 1);
 	exit(exit_status);
 }
 
-void	validate_map_name(char *map_name)
+void	validate_map_file(char *map)
 {
 	int	fd;
+	char *content;
 
-	if (!ft_strnstr(map_name, ".fdf", ft_strlen(map_name)))
+	if (ft_strnstr(map, ".fdf", ft_strlen(map)) == NULL)
 		error_handler(8);
-	fd = open(map_name, O_RDONLY);
+	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		error_handler(9);
+	content = get_next_line(fd);
+	if (content == NULL)
+		error_handler(10);
+	free(content);
+	get_next_line(-1);
 	close(fd);
 }

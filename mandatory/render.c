@@ -6,7 +6,7 @@
 /*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:53:31 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/20 11:09:57 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:01:37 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	isometric(t_fdf *fdf, t_point *start, t_point *end)
 	t_point	new_start;
 	t_point	new_end;
 
-	new_start.x = (start->x - start->y) * cos(VERTICAL_ROTATION_ANGLE);
-	new_start.y = (start->x + start->y) * sin(HORIZONTAL_ROTATION_ANGLE)
+	new_start.x = (start->x - start->y) * cos(X_AXIS_ANGLE_ROTATION_RADIUS);
+	new_start.y = (start->x + start->y) * sin(Z_AXIS_ANGLE_ROTATION_RADIUS)
 		- (start->z * fdf->cam->z_scale);
-	new_end.x = (end->x - end->y) * cos(VERTICAL_ROTATION_ANGLE);
-	new_end.y = (end->x + end->y) * sin(HORIZONTAL_ROTATION_ANGLE) - (end->z
+	new_end.x = (end->x - end->y) * cos(X_AXIS_ANGLE_ROTATION_RADIUS);
+	new_end.y = (end->x + end->y) * sin(Z_AXIS_ANGLE_ROTATION_RADIUS) - (end->z
 			* fdf->cam->z_scale);
 	start->x = new_start.x;
 	start->y = new_start.y;

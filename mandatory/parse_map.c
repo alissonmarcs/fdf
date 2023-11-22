@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:38:35 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 15:44:27 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:01:25 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	get_map_width(char *map_name)
 	free(line);
 	free_split(split_line);
 	if (!validade_lines(fd, size))
-		return (false);
+		return (0);
 	return (size);
 }
 
@@ -72,32 +72,32 @@ static int	get_map_height(char *map_name)
 	return (height);
 }
 
-static void	process_line(t_map *map, char **spli_line, int line_number)
+static void	process_line(t_map *map, char **spli_line, int line_index)
 {
-	int		column_number;
+	int		column_index;
 	char	*color;
 
-	column_number = 0;
-	while (column_number < map->width)
+	column_index = 0;
+	while (column_index < map->width)
 	{
-		map->matrix[line_number][column_number].x = (float)column_number;
-		map->matrix[line_number][column_number].y = (float)line_number;
-		map->matrix[line_number][column_number].z = \
-				(float)(ft_atoi(spli_line[column_number]));
-		if (map->matrix[line_number][column_number].z > map->z_max)
-			map->z_max = map->matrix[line_number][column_number].z;
-		color = ft_strchr(spli_line[column_number], ',');
+		map->matrix[line_index][column_index].x = (float)column_index;
+		map->matrix[line_index][column_index].y = (float)line_index;
+		map->matrix[line_index][column_index].z = \
+				(float)(ft_atoi(spli_line[column_index]));
+		if (map->matrix[line_index][column_index].z > map->z_max)
+			map->z_max = map->matrix[line_index][column_index].z;
+		color = ft_strchr(spli_line[column_index], ',');
 		if (color)
-			map->matrix[line_number][column_number].color = \
+			map->matrix[line_index][column_index].color = \
 					put_alpha(ft_hex_to_int(color + 1));
 		else
 		{
-			if (map->matrix[line_number][column_number].z <= 0)
-				map->matrix[line_number][column_number].color = 0x4ea8de;
+			if (map->matrix[line_index][column_index].z <= 0)
+				map->matrix[line_index][column_index].color = 0x4ea8de;
 			else
-				map->matrix[line_number][column_number].color = 0xfffb6f92;
+				map->matrix[line_index][column_index].color = 0xfffb6f92;
 		}
-		column_number++;
+		column_index++;
 	}
 }
 
@@ -105,20 +105,20 @@ static void	convert_map_to_matrix(t_map *map, char *map_name)
 {
 	char	*line;
 	char	**split_line;
-	int		line_number;
+	int		line_index;
 	int		fd;
 
 	fd = open(map_name, O_RDONLY);
-	line_number = 0;
+	line_index = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		split_line = ft_split(line, ' ');
-		process_line(map, split_line, line_number);
+		process_line(map, split_line, line_index);
 		free_split(split_line);
 		free(line);
-		line_number++;
+		line_index++;
 	}
 }

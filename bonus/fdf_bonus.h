@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:27:26 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 16:04:37 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:35:29 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ enum			e_projection
 // map parsing
 t_map			*parse_map(t_fdf *fdf, char *map_name);
 int				validade_lines(int fd, int size);
-void			validate_map_name(char *map_name);
+void			validate_map_file(char *map_name);
 void			center_to_origin(t_map *map);
 uint32_t		put_alpha(uint32_t color);
 float			get_scale(t_fdf *fdf);

@@ -1,0 +1,8 @@
+nesse projeto, eu preciso fazer um programa que lê um mapa e desenha esse mapa na tela, na pespectiva isométrica.
+
+o mapa vai me dar vários pontos, e eu preciso ligar esses pontos na tela.
+
+cada ponto tem o seu x, y e z. o valor x de um ponto é a posição dele no eixo x, o valor y de um ponto é a posição dele no eixo y, e o valor z de um ponto são os valores em si que estão no mapa.
+
+todos os pontos da linha 0 vão ter y igual a 0.
+todos os pontos da linha 1 vão ter y igual a 1.

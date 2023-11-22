@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:49:03 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 12:01:41 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:28:00 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void	error_handler(short exit_status)
 		ft_putstr_fd("Invalid extension in map name\n", 1);
 	else if (exit_status == 9)
 		ft_putstr_fd("Map does not exist\n", 1);
+	else if (exit_status == 10)
+		ft_putstr_fd("Empty map\n", 1);
 	exit(exit_status);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+         #
+#    By: alisson <alisson@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/20 10:35:42 by almarcos          #+#    #+#              #
-#    Updated: 2023/11/06 15:19:49 by almarcos         ###   ########.fr        #
+#    Updated: 2023/11/22 10:09:23 by alisson          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SOURCES = ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
 	ft_hex_to_int.c
 
-GNL_SOURCE = get_next_line_bonus.c
+GNL_SOURCE = get_next_line.c
 
 FT_PRINTF_SOURCE = ft_printf.c
 

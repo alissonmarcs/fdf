@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 16:59:30 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/16 15:19:39 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:05:52 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,19 @@ static char	*ft_join_and_free(char const *s1, char const *s2);
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*after_new_line_content[1024];
+	static char	*after_new_line_content;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (fd < 0)
+	{
+		free(after_new_line_content);
+		after_new_line_content = NULL;
 		return (NULL);
-	after_new_line_content[fd] = ft_read_file(fd, after_new_line_content[fd]);
-	if (after_new_line_content[fd] == NULL)
+	}
+	after_new_line_content = ft_read_file(fd, after_new_line_content);
+	if (after_new_line_content == NULL)
 		return (NULL);
-	line = ft_make_line(after_new_line_content[fd]);
-	after_new_line_content[fd] = ft_update_buffer(after_new_line_content[fd]);
+	line = ft_make_line(after_new_line_content);
+	after_new_line_content = ft_update_buffer(after_new_line_content);
 	return (line);
 }
 

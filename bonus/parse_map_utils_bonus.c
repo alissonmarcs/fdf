@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:34:04 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 16:12:00 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:35:49 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,20 @@ void	center_to_origin(t_map *map)
 	}
 }
 
-void	validate_map_name(char *map_name)
+void	validate_map_file(char *map_name)
 {
 	int	fd;
+	char *content;
 
-	if (!ft_strnstr(map_name, ".fdf", ft_strlen(map_name)))
+	if (ft_strnstr(map_name, ".fdf", ft_strlen(map_name)) == NULL)
 		error_handler(8);
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
 		error_handler(9);
+	content = get_next_line(fd);
+	if (content == NULL)
+		error_handler(10);
+	free(content);
+	get_next_line(-1);
 	close(fd);
 }

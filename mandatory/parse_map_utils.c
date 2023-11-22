@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:34:04 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 13:58:06 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:12:33 by alisson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	validade_lines(int fd, int size)
 		free_split(split_line);
 	}
 	close(fd);
+	get_next_line(-1);
 	return (check);
 }
 
