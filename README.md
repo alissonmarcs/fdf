@@ -1,6 +1,6 @@
 # FDF
 ![Screenshot of the program run pyra map](screenshots/pyra_screenshot.png)  
-FDF is a program that read a map and render it in 3D. The map give us several points and I have to link these points with lines. FDF is short for "Fil de Fer" in French that means ’wireframe model’, that is, all surfaces of the 3D object are outlined by lines.
+FDF is a program that read a map and render it in 3D. The map give us several points and we have to link these points with lines to form the projection. FDF is short for "Fil de Fer" in French that means ’wireframe model’, that is, all surfaces of the 3D object are outlined by lines.
 
 ## How to use
 In order to compile and run, follow these steps. You must have glfw (Graphics Library Framework) and cmake instaled. 
@@ -12,7 +12,7 @@ make bonus
 ./fdf_bonus ./maps/elem2.fdf
 ```
 
-With `make bonus` you are able to use keys to rotate, translate and zoom than only with `make`:
+Compiling with `make bonus` you will be able to use keys to rotate, translate and zoom than only with `make`. These are keys for doing that:
 - Arrow keys to translate.
 - Equal and minus keys to zoom.
 - `w` and `s` to rotate aroud x axes.
@@ -23,7 +23,7 @@ With `make bonus` you are able to use keys to rotate, translate and zoom than on
 - `1` and `2` to toggle beetween isometric and top view projection.
 - `Esc` to close windows and terminate.
 
-Several maps are avaliable in maps folder. More cool maps are avaliable in maps/others folder.
+Several maps are avaliable in `maps` folder. More cool maps are avaliable in `maps/others` folder.
 
 ## Key concepts to develop the project
 
@@ -41,23 +41,23 @@ The map file give us several numbers, every number represent a point. Every poin
 
 ### How to get isometric projection
 
-See the projection axis as the follows:
+See the projection axes as the follows:
 
-![Image showing x, y and y axis of projection](screenshots/axis_v2.jpg)
+![Image showing x, y and y axes of projection](screenshots/axes.jpg)
 
-To get isometric, all we have to do is rotate projection aroud it vertical axis z by 45° and then rotate again around x axis by 35°.
+To get isometric, all we have to do is rotate projection aroud it vertical axis z by 45° then rotate again around x axis by 35°.
 
 ### Understanding rotations
 
 Rotate a projection around its whateaver axis is like we grab that axis with our handy and twist it.
 
-![Exemple os rotation around x axes](screenshots/example_rotation.gif)
+![Exemple os rotation around x axis](screenshots/example_rotation.gif)
 
 The traditional way of doing that is using rotation matrices, but I used simplified formulas for doing that.
 
 ### Drawing lines that connect every point  on the map
 
-Since [MLX42](https://github.com/codam-coding-college/MLX42) graphics library doest have function to draw lines, I have do study Bresenham line drawing algorithm and implement it.
+To form the desired projection we have to connect all the points that map give us. Since [MLX42](https://github.com/codam-coding-college/MLX42) graphics library doest have function to draw lines, I have do study Bresenham line drawing algorithm and implement it.
 
 ## Screenshots
 
