@@ -6,7 +6,7 @@
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 09:04:24 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 16:06:01 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/23 09:42:43 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ static void	reset_view(t_fdf *fdf)
 {
 	if (!mlx_is_key_down(fdf->mlx, MLX_KEY_R))
 		return ;
-	set_camera(fdf, fdf->cam, fdf->cam->projection);
+	set_camera(fdf, fdf->cam->projection);
 }

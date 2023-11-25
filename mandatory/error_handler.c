@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:49:03 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/22 11:34:25 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/23 10:46:43 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	error_handler(short exit_status)
 
 void	validate_map_file(char *map)
 {
-	int	fd;
-	char *content;
+	int		fd;
+	char	*content;
 
 	if (ft_strnstr(map, ".fdf", ft_strlen(map)) == NULL)
 		error_handler(8);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   news.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/22 08:30:48 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/23 10:11:30 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	new_line_data(t_line_drawing_data *line_data, t_point start,
 {
 	line_data->dx = ft_abs(end.x - start.x);
 	line_data->dy = ft_abs(end.y - start.y);
+	line_data->control = 0;
 	if (end.x > start.x)
 		line_data->inc_x = 1;
 	else

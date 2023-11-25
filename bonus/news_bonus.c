@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits_bonus.c                                      :+:      :+:    :+:   */
+/*   news_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:43:56 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/21 16:13:11 by almarcos         ###   ########.fr       */
+/*   Updated: 2023/11/23 09:41:59 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,30 @@ t_cam	*new_camera(t_fdf *fdf)
 	cam = malloc(sizeof(t_cam));
 	if (!cam)
 		error_handler(6);
-	set_camera(fdf, cam, ISOMETRIC);
+	fdf->cam = cam;
+	set_camera(fdf, ISOMETRIC);
 	return (cam);
 }
 
-void	set_camera(t_fdf *fdf, t_cam *cam, short PROJECTION)
+void	set_camera(t_fdf *fdf, short PROJECTION)
 {
-	cam->projection = PROJECTION;
-	cam->scale = get_scale(fdf);
-	cam->x_offset = (WINDOW_WIDTH / 2);
-	cam->y_offset = (WINDOW_HEIGHT / 2);
-	cam->rotation_angle_x = 0;
-	cam->rotation_angle_y = 0;
-	cam->rotation_angle_z = 0;
+	fdf->cam->projection = PROJECTION;
+	fdf->cam->scale = get_scale(fdf);
+	fdf->cam->x_offset = (WINDOW_WIDTH / 2);
+	fdf->cam->y_offset = (WINDOW_HEIGHT / 2);
+	fdf->cam->rotation_angle_x = 0;
+	fdf->cam->rotation_angle_y = 0;
+	fdf->cam->rotation_angle_z = 0;
 	if (fdf->map->width <= 500)
-		cam->z_scale_factor = 2;
+		fdf->cam->z_scale_factor = 2;
 	else
-		cam->z_scale_factor = 0.009;
+		fdf->cam->z_scale_factor = 0.009;
 	if (fdf->map->z_max <= 20)
-		cam->z_scale_default = 10;
+		fdf->cam->z_scale_default = 10;
 	else if (fdf->map->z_max > 720)
-		cam->z_scale_default = 0.03;
+		fdf->cam->z_scale_default = 0.03;
 	else
-		cam->z_scale_default = 1;
+		fdf->cam->z_scale_default = 1;
 }
 
 void	new_line_data(t_line_drawing_data *line_data, t_point *start,

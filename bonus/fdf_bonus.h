@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alisson <alisson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: almarcos <almarcos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:27:26 by almarcos          #+#    #+#             */
-/*   Updated: 2023/11/22 11:35:29 by alisson          ###   ########.fr       */
+/*   Updated: 2023/11/23 10:55:21 by almarcos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define WINDOW_WIDTH 1300
 # define WINDOW_HEIGHT 900
 # define ONE_DEGREE_IN_RADIUS 0.01745329
-# define VERTICAL_ROTATION_ANGLE 0.610865
-# define HORIZONTAL_ROTATION_ANGLE 0.785398
+# define X_AXIS_ANGLE_ROTATION_RADIUS 0.610865
+# define Z_AXIS_ANGLE_ROTATION_RADIUS 0.785398
 
 // test only
 # include <stdio.h>
@@ -96,7 +96,7 @@ t_map			*new_map(void);
 t_cam			*new_camera(t_fdf *fdf);
 void			new_line_data(t_line_drawing_data *line_data, t_point *start,
 					t_point *end);
-void			set_camera(t_fdf *fdf, t_cam *cam, short PROJECTION);
+void			set_camera(t_fdf *fdf, short PROJECTION);
 
 // line drawing
 void			draw_line(t_fdf *data, t_point start, t_point end);
