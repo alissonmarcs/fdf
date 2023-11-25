@@ -3,7 +3,7 @@
 FDF is a program that read a map and render it in 3D. The map give us several points and I have to link these points with lines. FDF is short for "Fil de Fer" in French that means ’wireframe model’, that is, all surfaces of the 3D object are outlined by lines.
 
 ## How to use
-In order to compile, you must have glfw (Graphics Library Framework) and cmake instaled. 
+In order to compile and run, follow these steps. You must have glfw (Graphics Library Framework) and cmake instaled. 
 
 ```shell
 git clone https://github.com/alissonmarcs/fdf.git
@@ -23,7 +23,41 @@ With `make bonus` you are able to use keys to rotate, translate and zoom than on
 - `1` and `2` to toggle beetween isometric and top view projection.
 - `Esc` to close windows and terminate.
 
-Several cool maps are avaliable in maps folder. More cool maps are avaliable in maps/others folder.
+Several maps are avaliable in maps folder. More cool maps are avaliable in maps/others folder.
+
+## Key concepts to develop the project
+
+- Understanding the map file format.
+- How to get isometric projection (3D projection that subject requires).
+- Understanding rotations.
+- Drawing lines that connect every point on the map.
+
+### Understanding the map file format
+
+![Exemple of map file maps/42.fdf](screenshots/example_map.png)  
+maps/42.fdf
+
+The map file give us several numbers, every number represent a point. Every point in map have yours x, y and z cordinate. The x value of a point is the column index that he is (the line is splited by spaces), the y value of a point is the line index that he is, and the z value is its not any index, but the value itself. Every number we see in the above map file are values for z of all points, while the x and y values are infered by the position of the z values. 
+
+### How to get isometric projection
+
+See the projection axis as the follows:
+
+![Image showing x, y and y axis of projection](screenshots/axis_v2.jpg)
+
+To get isometric, all we have to do is rotate projection aroud it vertical axis z by 45° and then rotate again around x axis by 35°.
+
+### Understanding rotations
+
+Rotate a projection around its whateaver axis is like we grab that axis with our handy and twist it.
+
+![Exemple os rotation around x axes](screenshots/example_rotation.gif)
+
+The traditional way of doing that is using rotation matrices, but I used simplified formulas for doing that.
+
+### Drawing lines that connect every point  on the map
+
+Since [MLX42](https://github.com/codam-coding-college/MLX42) graphics library doest have function to draw lines, I have do study Bresenham line drawing algorithm and implement it.
 
 ## Screenshots
 
