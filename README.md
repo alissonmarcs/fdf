@@ -1,6 +1,6 @@
 # FDF
 ![Screenshot of the program run pyra map](screenshots/pyra_screenshot.png)  
-FDF is a program that read a map and render it in 3D. The map give us several points and we have to link these points with lines to form the projection. FDF is short for "Fil de Fer" in French that means ’wireframe model’, that is, all surfaces of the 3D object are outlined by lines.
+FDF is a program that read a map and render it in 3D. The map give us several points and we have to link these points with lines to form the projection. FDF is short for "Fil de Fer" in French that means ’iron wire’, that is, all surfaces of the 3D object are outlined by lines.
 
 ## How to use
 In order to compile and run, follow these steps. You must have glfw (Graphics Library Framework) and cmake instaled. 
