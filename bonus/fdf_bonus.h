@@ -82,47 +82,47 @@ enum			e_projection
 	TOP_VIEW
 };
 
-// map parsing
+/* parse_map_bonus.c, parse_map_utils_bonus.c */
 t_map			*parse_map(t_fdf *fdf, char *map_name);
 int				validade_lines(int fd, int size);
-void			validate_map_file(char *map_name);
-void			center_to_origin(t_map *map);
 uint32_t		put_alpha(uint32_t color);
 float			get_scale(t_fdf *fdf);
+void			center_to_origin(t_map *map);
+void			validate_map_file(char *map_name);
 
-// inits
+/* news_bonus.c */
 t_fdf			*new_fdf(char *map_name);
 t_map			*new_map(void);
 t_cam			*new_camera(t_fdf *fdf);
+void			set_camera(t_fdf *fdf, short PROJECTION);
 void			new_line_data(t_line_drawing_data *line_data, t_point *start,
 					t_point *end);
-void			set_camera(t_fdf *fdf, short PROJECTION);
 
-// line drawing
+/* draw_line_bonus.c, draw_line_utils_bonus.c */
 void			draw_line(t_fdf *data, t_point start, t_point end);
 void			put_pixel(t_fdf *fdf, int x, int y, uint32_t color);
 
-// rendering
+/* render_bonus.c, render__utils_bonus.c */
 void			render(void *param);
 void			set_background(t_fdf *fdf);
 
-// error managment
+/* error_handler_bonus.c */
 void			error_handler(short exit_status);
 
-// general helpers
+/* others_utils_bonus.c */
 void			clear_invalid_map(t_fdf *fdf, t_map *map);
 t_point			**alloc_matrix(int width, int height);
 void			free_matrix(t_map *map);
 void			free_split(char **split_line);
 void			free_all(t_fdf *fdf);
 
-// handling keypress
+/* key_press_handler_bonus.c, key_press_handler_utils_bonus.c */
 void			key_press_handler(void *param);
+void			zoom(t_fdf *fdf);
+void			toggle_projection(t_fdf *fdf);
 
-// transformations
+/* rotations_bonus.c */
 void			rotate_x(t_fdf *fdf, t_point *start, t_point *end, float angle);
 void			rotate_y(t_point *start, t_point *end, float angle);
 void			rotate_z(t_point *start, t_point *end, float angle);
-void			zoom(t_fdf *fdf);
-void			toggle_projection(t_fdf *fdf);
 #endif
