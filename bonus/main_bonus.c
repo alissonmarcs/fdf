@@ -13,7 +13,7 @@
 #include "fdf_bonus.h"
 
 int	main(int argc, char **argv)
-{	
+{
 	t_fdf	*fdf;
 
 	if (argc != 2)
