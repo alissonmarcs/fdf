@@ -27,9 +27,6 @@
 # define X_AXIS_ANGLE_ROTATION_RADIUS 0.610865
 # define Z_AXIS_ANGLE_ROTATION_RADIUS 0.785398
 
-// test only
-# include <stdio.h>
-
 typedef struct s_point
 {
 	float		x;
