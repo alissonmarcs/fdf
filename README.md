@@ -1,6 +1,6 @@
 # FDF
 ![Screenshot of the program run pyra map](screenshots/elem2_screenshot.png)  
-FDF is a program that read a map and render it in 3D. The map give us several points and we have to link these points with lines to form the projection. FDF is short for "Fil de Fer" in French that means ’wireframe model’, that is, all surfaces of the 3D object are outlined by lines. It is a 42 School project.
+FDF is a program that read a map and render it in 3D. The map give us several points and we have to link these points with lines to form the projection. FDF is short for "Fil de Fer" in French that means ’iron wire’, i.e., all surfaces of the 3D object are outlined by lines. It is a 42 School project.
 
 ## How to use
 In order to compile and run, follow these commands. You must have glfw (Graphics Library Framework) and cmake instaled. 
@@ -42,7 +42,7 @@ The map file give us several numbers, every number represent a point. Every poin
 
 ### Centralize, scale beetwen points and scale for z
 
-To centralize, I put the center of the projection on origin of window (point 0, 0), and afterwards add offsets on x and y of all points to achieving centralization. Scale beetween points (scale for x and y of each point) is nescessary because if not, the projection will be very small, and it needs be dymanic, small maps require more scale than big maps. Some maps have z values very small, while others very big, and projection of these maps were distorced in z axis, so a dymanic scale for z axis is also necessary.
+To centralize, I put the center of the projection on origin of window (point 0, 0), and afterwards add offsets on x and y of all points to achieving centralization. Scale beetween points (scale for x and y of each point) is necessary because if not, the projection will be very small, and it needs be dymanic, small maps require more scale than big maps. Some maps have z values very small, while others very big, and projection of these maps were distorced in z axis, so a dymanic scale for z axis is also necessary.
 
 ### How to get isometric projection
 
