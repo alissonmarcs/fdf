@@ -67,38 +67,38 @@ typedef struct s_line_drawing_data
 	int			inc_y;
 }				t_line_drawing_data;
 
-// map parsing
+/* parse_map.c, parse_map_utils.c */
 t_map			*parse_map(t_fdf *fdf, char *map_name);
-void			validate_map_file(char *map_name);
 int				validade_lines(int fd, int size);
-void			center_to_origin(t_map *map);
 uint32_t		put_alpha(uint32_t color);
-float			get_scale(t_fdf *fdf);
 void			clear_invalid_map(t_fdf *fdf, t_map *map);
+float			get_scale(t_fdf *fdf);
+void			center_to_origin(t_map *map);
 
-// line drawing
-void			put_pixel(t_fdf *fdf, int x, int y, uint32_t color);
+/* draw_line.c, draw_line_utils.c */
 void			draw_line(t_fdf *data, t_point start, t_point end);
+void			put_pixel(t_fdf *fdf, int x, int y, uint32_t color);
 
-// rendering
-void			set_background(t_fdf *fdf);
+/* render.c, render_utils.c */
 void			render(t_fdf *fdf);
 void			transformations(t_fdf *fdf, t_point start, t_point end);
 void			scale(t_fdf *fdf, t_point *start, t_point *end);
 void			isometric(t_fdf *fdf, t_point *start, t_point *end);
 void			centralize(t_fdf *fdf, t_point *start, t_point *end);
+void			set_background(t_fdf *fdf);
 
-// news
+/* news.c */
 t_fdf			*new_fdf(char *map_name);
 t_map			*new_map(void);
 t_cam			*new_cam(t_fdf *fdf);
 void			new_line_data(t_line_drawing_data *line_data, t_point start,
 					t_point end);
 
-// error managment
+/* error_handler.c */
 void			error_handler(short exit_status);
+void			validate_map_file(char *map_name);
 
-// other utils
+/* others_utils.c */
 t_point			**alloc_matrix(int width, int height);
 void			free_matrix(t_map *map);
 void			free_split(char **split_line);
