@@ -50,6 +50,9 @@ $(NAME_BONUS): $(OBJECTS_FOLDER) libs $(BONUS_OBJECTS)
 $(OBJECTS_FOLDER)%.o: $(BONUS_FOLDER)%.c $(BONUS_FOLDER)fdf_bonus.h
 	cc $(CFLAGS) $(LIBS_HEADERS) -c $< -o $@
 
+val:
+	valgrind --leak-check=full --suppressions=./sup.sup ./fdf_bonus ./maps/others/MGDS_WHOLE_WORLD_OCEAN0_L.fdf
+
 clean:
 	rm -rf $(OBJECTS_FOLDER)*
 
