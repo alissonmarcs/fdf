@@ -46,3 +46,19 @@
    fun:__pthread_once_slow
    ...
 }
+{
+ <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:glfwInit
+   ...
+}
+{
+ <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dl_init
+   ...
+}
