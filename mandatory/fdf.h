@@ -101,7 +101,6 @@ void			validate_map_file(char *map_name);
 /* others_utils.c */
 t_point			**alloc_matrix(int width, int height);
 void			free_matrix(t_map *map);
-void			free_split(char **split_line);
 void			free_all(t_fdf *fdf);
 void			close_window(void *param);
 

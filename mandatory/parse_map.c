@@ -46,7 +46,7 @@ static int	get_map_width(char *map_name)
 	while (split_line[size] && split_line[size][0] != '\n')
 		size++;
 	free(line);
-	free_split(split_line);
+	ft_free_split(split_line);
 	if (!validade_lines(fd, size))
 		return (0);
 	return (size);
@@ -117,7 +117,7 @@ static void	convert_map_to_matrix(t_map *map, char *map_name)
 			break ;
 		split_line = ft_split(line, ' ');
 		process_line(map, split_line, line_index);
-		free_split(split_line);
+		ft_free_split(split_line);
 		free(line);
 		line_index++;
 	}
