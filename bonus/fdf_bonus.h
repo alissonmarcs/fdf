@@ -110,7 +110,6 @@ void			error_handler(short exit_status);
 void			clear_invalid_map(t_fdf *fdf, t_map *map);
 t_point			**alloc_matrix(int width, int height);
 void			free_matrix(t_map *map);
-void			free_split(char **split_line);
 void			free_all(t_fdf *fdf);
 
 /* key_press_handler_bonus.c, key_press_handler_utils_bonus.c */

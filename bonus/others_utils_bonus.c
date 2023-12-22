@@ -42,19 +42,6 @@ void	free_matrix(t_map *map)
 	free(map->matrix);
 }
 
-void	free_split(char **split_line)
-{
-	int	index;
-
-	index = 0;
-	while (split_line[index] != NULL)
-	{
-		free(split_line[index]);
-		index++;
-	}
-	free(split_line);
-}
-
 void	free_all(t_fdf *fdf)
 {
 	free_matrix(fdf->map);

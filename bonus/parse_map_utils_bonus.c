@@ -34,7 +34,7 @@ int	validade_lines(int fd, int size)
 			check = false;
 		current_line_size = 0;
 		free(line);
-		free_split(split_line);
+		ft_free_split(split_line);
 	}
 	close(fd);
 	return (check);
