@@ -84,6 +84,8 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 int					ft_lstsize(t_list *lst);
 int					ft_abs(int n);
 int					ft_hex_to_int(char *str);
+void				ft_free_split(char **split);
+
 // *** GNL ***
 
 # ifndef BUFFER_SIZE
