@@ -29,7 +29,7 @@ void	error_handler(short exit_status)
 	else if (exit_status == 6)
 		ft_putstr_fd("Allocation of memory for cam struct failed\n.", 1);
 	else if (exit_status == 7)
-		ft_putstr_fd("Usage: <filename>\n", 1);
+		ft_putstr_fd("Usage: ./fdf_bonus <map_file>\n", 1);
 	else if (exit_status == 8)
 		ft_putstr_fd("Invalid extension in map name\n", 1);
 	else if (exit_status == 9)
